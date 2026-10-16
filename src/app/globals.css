@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f6f9fc;
+  --surface: #ffffff;
+  --surface-tint: #e5f5f4;
+  --border: #d8d8d8;
+  --border-strong: #b7b6b6;
+
+  --ink: #02273b;
+  --navy-alt: #0c1831;
+  --fg: #02273b;
+  --fg-muted: #45576a;
+  --fg-faint: #73737f;
+
+  --primary: #00a298;
+  --primary-dark: #006c78;
+  --primary-soft: #e5f5f4;
+  --on-primary: #ffffff;
+
+  --accent-pink: #db0062;
+  --accent-pink-dark: #a80050;
+  --accent-pink-soft: #fce6f0;
+  --on-pink: #ffffff;
+
+  --on-dark: #f3f6f8;
+  --on-dark-muted: #9fb0c0;
+
+  --success: #0da532;
+  --danger: #d4351e;
+  --warning: #fbbf24;
+
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-figtree);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-figtree);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Diagonal line texture, used on the dark teal CTA band */
+.diagonal-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    115deg,
+    color-mix(in srgb, white 14%, transparent) 0px,
+    color-mix(in srgb, white 14%, transparent) 1px,
+    transparent 1px,
+    transparent 64px
+  );
+}
+
+/* Status pills used inside mock UI */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.pill-success {
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+  color: var(--success);
+}
+.pill-warning {
+  background: color-mix(in srgb, var(--warning) 18%, transparent);
+  color: #92650f;
+}
+.pill-danger {
+  background: color-mix(in srgb, var(--danger) 13%, transparent);
+  color: var(--danger);
+}
+.pill-neutral {
+  background: var(--surface-tint);
+  color: var(--primary-dark);
+}
+.pill-pink {
+  background: var(--accent-pink-soft);
+  color: var(--accent-pink-dark);
+}
